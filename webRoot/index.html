@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<script type="text/javaScript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javaScript" src="js/restRequest.js"></script>
+<script type="text/javaScript" src="js/util.js"></script>
+<link rel="stylesheet" href="css/body.css">
+<title>SSDB可视化工具V3</title>
+</head>
+
+<body>
+	<h2 id="connectText">连接配置 当前连接ssdb-IP&nbsp;:&nbsp;<span id="warnSsdbIP" style="color:green;font-size:18px"></span> &nbsp;&nbsp;port&nbsp;:&nbsp;<span id="warnSsdbPort" style="color:green;font-size:18px"></span></h2>
+	<input type="text" class="text" id="ssdbIP" value="172.16.0.14" onblur="" />
+	<input type="text" class="text" id="ssdbPort" value="6100" onblur="" />
+	<input type="button" id="changeCon" value="连接" />
+	<span id="warnMsg" style="color:green;font-size:18px"></span>
+	<h2 id="queryText">查询参数</h2>
+	<input type="text" class="text" id="key" value="请输入Key" />
+	<input type="text" class="text" id="value" value="请输入Value" />
+	<input type="text" class="text" id="number" value="请输入查询数量" />
+	<input type="button" id="butsubmit" value="查询/增加" />
+	<input type="button" id="delete" value="删除" />
+	<span id="addWarnMsg" style="color:green;font-size:18px"></span>
+	<h2 id="resultText">查询结果</h2>
+	<table class="bordered" id='showData'>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th><input id="checkAll" type="checkbox" /></th>
+				<th>key</th>
+				<th>value</th>
+			</tr>
+		</thead>
+	</table>
+</body>
+</html>

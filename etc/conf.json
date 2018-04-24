@@ -1,0 +1,46 @@
+{
+	"service": {
+		"_comment": "rest服务的服务端口",
+		"servicePort": "8080"
+	},
+	"cleaner": {
+		"_comment": "session的过期失效时间 单位为秒",
+		"expireTime": 14400,
+		"_comment": "清理程序首次经过多少秒之后执行 单位为秒",
+		"firstStart": 7200
+	},
+	"dbDefault": {
+		"_comment": "获取连接超时时间，单位为秒",
+		"getClientTimeout": 5,
+		"_comment": "最大连接池个数",
+		"maxPoolSize": 100,
+		"_comment": "最小连接池数",
+		"minPoolSize": 30,
+		"_comment": "连接耗尽的时候一次同时获取的连接数",
+		"acquireIncrement": 10,
+		"_comment": "最大等待数目",
+		"maxWaitSize": 10,
+		"_comment": "连接池内缓存的连接状态检查时间隔，单位为秒",
+		"healthSecond": 60
+	},
+	"dbCustom": [
+		{
+			"_comment": "ssdb的ip或主机名",
+			"host": "localhost",
+			"_comment": "ssdb的端口",
+			"port": 8888,
+			"_comment": "获取连接超时时间，单位为秒",
+			"getClientTimeout": 5,
+			"_comment": "最大连接池个数",
+			"maxPoolSize": 50,
+			"_comment": "最小连接池数",
+			"minPoolSize": 10,
+			"_comment": "连接耗尽的时候一次同时获取的连接数",
+			"acquireIncrement": 10,
+			"_comment": "最大等待数目",
+			"maxWaitSize": 5,
+			"_comment": "连接池内缓存的连接状态检查时间隔，单位为秒",
+			"healthSecond": 10
+		}
+	]
+}
