@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/seefan/gossdb"
+	"github.com/seefan/gossdb/conf"
 	"log"
 	"strings"
 	"sync"
@@ -26,7 +27,7 @@ func init() {
 
 //用于新建连接池的方法
 func getConPool(dbConfig config.DbConf) (*gossdb.Connectors, error) {
-	connector, err := gossdb.NewPool(&gossdb.Config{
+	connector, err := gossdb.NewPool(&conf.Config{
 		Host:             dbConfig.Host,             //ssdb的ip或主机名
 		Port:             dbConfig.Port,             //ssdb的端口
 		MinPoolSize:      dbConfig.MinPoolSize,      //最小连接池数
