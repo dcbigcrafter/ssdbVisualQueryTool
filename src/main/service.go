@@ -46,17 +46,33 @@ func queryHandler(param pojo.RequestJson) util.ResponseJson {
 		response := util.InsertSuccess()
 		return response
 	} else {
+		//保存查询出来的数据
+		var rows []pojo.Row
+		//先执行get 查一下有没有该key的数据
+		resultValue, err := dbClient.Get(param.Data.Key)
+		if err != nil {
+			//异常处理
+			responseJn := util.SystemErr()
+			responseJn.Msg = "查询失败，原因：" + err.Error()
+			return responseJn
+		}
+		//查询结果断言为string
+		result := resultValue.String()
+		//如果结果不为空则保存
+		if result != "" {
+			rows = append(rows, pojo.Row{Key: param.Data.Key, Value: result})
+		}
 		//查询操作的处理
 		results, err := dbClient.Do("scan", param.Data.Key+"!", param.Data.Key+"~", int64(queryNum))
 		if err != nil {
 			responseJn := util.SystemErr()
-			responseJn.Msg = "查询失败，原因：" + err.Error()
+			responseJn.Msg = "查询数据失败，原因：" + err.Error()
 			return responseJn
-		} else if len(results) == 1 && results[0] == "ok" {
+			/*} else if len(results) == 1 && results[0] == "ok" {
 			//未查到数据
 			responseJn := util.SelectSuccess()
 			responseJn.Msg = "查询结束，查询到0条数据"
-			return responseJn
+			return responseJn*/
 		} else if len(results) > 0 && results[0] != "ok" {
 			//不为ok时也是一种异常
 			responseJn := util.SystemErr()
@@ -64,12 +80,18 @@ func queryHandler(param pojo.RequestJson) util.ResponseJson {
 			return responseJn
 		}
 		//存在有效查询结果 则组织返回
-		var rows []pojo.Row
 		for i := 1; i < len(results); i += 2 {
 			var rowData pojo.Row
 			rowData.Key = results[i]
 			rowData.Value = results[i+1]
 			rows = append(rows, rowData)
+		}
+		//判断是否查到了数据
+		if len(rows) == 0 {
+			//未查到数据
+			responseJn := util.SelectSuccess()
+			responseJn.Msg = "查询结束，查询到0条数据"
+			return responseJn
 		}
 		//返回结果
 		responseJn := util.SelectSuccess()
