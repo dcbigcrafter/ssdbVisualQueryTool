@@ -1,24 +1,24 @@
 # 使用方法
-##1.下载第三方包
+## 1.下载第三方包
 >由于使用了seefan的ssdb客户端，因此需要使用以下命令将相关代码下载到GOPATH。
 ```
 go get github.com/seefan/gossdb
 ```
-##2.编译程序
+## 2.编译程序
 >进入ssdbVisualQueryTool目录，设置该路径为GOPATH，执行编译，参考编译命令如下：
 ```
 export GOPATH=`pwd`
 go build -o bin/ssdbTool main
 ```
-##3.修改配置文件
+## 3.修改配置文件
 >配置文件为ssdbVisualQueryTool/etc/conf.json文件，其中service部分为访问端口号的配置；dbDefault为数据库连接池的默认配置；dbCustom为自定义数据库连接池配置，可用于对常用数据库连接的优化。
 
-##4.执行程序
+## 4.执行程序
 >bin目录下的start.sh中提供了以下启动命令作为参考。由于读取静态网页文件用的是相对路径，以根目录ssdbVisualQueryTool为基准，因此请在根目录通过bin/ssdbTool的方式启动程序，否则可能会在加载静态页面的时候抛出异常。
 ```
 nohup bin/ssdbTool >logs/`date +%Y%m%d%H%M%S`.log 2>&1 &
 ```
-##5.访问ssdb可视化工具
+## 5.访问ssdb可视化工具
 >打开浏览器输入localhost:配置的端口号即可访问ssdb可视化工具，本例为localhost:8080，打开之后界面如下。前端技术有限，界面略丑~
 ![ssdb可视化工具界面](https://github.com/dcbigcrafter/screenShorts/raw/master/ssdbVisualQueryTool/1.png)
 # 支持的操作
