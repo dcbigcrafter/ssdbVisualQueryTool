@@ -3,12 +3,6 @@
 		"_comment": "rest服务的服务端口",
 		"servicePort": "8080"
 	},
-	"cleaner": {
-		"_comment": "session的过期失效时间 单位为秒",
-		"expireTime": 14400,
-		"_comment": "清理程序首次经过多少秒之后执行 单位为秒",
-		"firstStart": 7200
-	},
 	"dbDefault": {
 		"_comment": "获取连接超时时间，单位为秒",
 		"getClientTimeout": 5,
